@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Help Eddie find a summer 2027 finance internship.">
+<title>Help Eddie Find an Internship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: one phone-first column (max 560px), dark single-theme, violet tie accent, bottom quick-contact bar */
+:root{
+  --bg:#08080b; --card:#101015; --card2:#16161d; --line:#26262f;
+  --fg:#f1f1f5; --muted:#a2a2b0; --faint:#6d6d7a;
+  --violet:#b99af3; --deep:#5b2b9a; --accent:#8b4fd8;
+  --display:'Outfit','Helvetica Neue',system-ui,sans-serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(14px, env(safe-area-inset-left, 0px));padding-right:max(14px, env(safe-area-inset-right, 0px));padding-block:12px 110px}
+.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+a{color:var(--fg)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--violet);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0}
+.v{color:var(--violet)}
+.pill{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;border-radius:999px;cursor:pointer;font-family:inherit}
+.solid{background:var(--accent);color:#fff;border:none}
+.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--accent)}
+.soft{background:transparent;color:var(--violet);border:1.5px solid var(--deep)}
+.big{display:flex;justify-content:center;font-size:16px;padding:14px 22px;min-height:52px}
+.sm{font-size:14px;padding:8px 16px;min-height:44px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 12px;margin-bottom:12px}
+.h2{font-size:32px;line-height:1.1;letter-spacing:-.025em}
+
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-family:var(--display);font-weight:600;font-size:22px;text-decoration:none}
+
+.hero{position:relative;overflow:hidden;border-radius:24px;border:1px solid var(--line);
+  background:radial-gradient(120% 70% at 85% 0%, #2b1650 0%, #14101f 45%, var(--card) 80%);padding:22px 18px 0;display:flex;flex-direction:column;gap:18px}
+.tag{align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--violet);border:1px solid var(--deep);background:rgba(139,79,216,.12);padding:7px 14px;border-radius:999px}
+h1{font-size:46px;line-height:1.04;letter-spacing:-.03em;margin:16px 0 14px}
+.lede{color:var(--muted);margin:0}
+.deal{margin:16px 0 18px;padding:14px 16px;border-radius:16px;background:rgba(139,79,216,.14);border:1px solid var(--deep);font-weight:500;line-height:1.45}
+.deal b{color:var(--violet)}
+.ctas{display:flex;flex-direction:column;gap:10px}
+.photo{width:78%;max-width:300px;margin:6px auto 0;position:relative}
+.arch{padding:4px;border-radius:999px 999px 0 0;background:linear-gradient(180deg,#b99af3,#5b2b9a 70%,rgba(91,43,154,0));box-shadow:0 0 70px rgba(139,79,216,.45)}
+.arch img{display:block;width:100%;max-width:100%;aspect-ratio:4/5;height:auto;object-fit:cover;object-position:50% 12%;border-radius:999px 999px 0 0;background:#8d8d92}
+.chip{position:absolute;left:-8px;bottom:18px;background:rgba(16,16,21,.94);border:1px solid var(--line);border-radius:14px;padding:8px 12px;font-size:12.5px;line-height:1.35;max-width:170px}
+.chip b{display:block;font-family:var(--display);font-weight:500;font-size:13.5px;color:var(--violet)}
+
+.stats{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.stat{flex:1 1 0;min-width:0;background:var(--card);padding:18px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px}
+.stat .n{font-family:var(--display);font-weight:500;font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .l{color:var(--muted);font-size:12.5px;line-height:1.3}
+.stat.mid{flex:1.35 1 0;padding:22px 8px;background:linear-gradient(180deg,#2a1650 0%,#1a1030 100%);box-shadow:inset 0 0 0 1px var(--deep)}
+.stat.mid .n{font-size:46px;line-height:1;letter-spacing:-.02em;color:#fff}
+.stat.mid .l{color:#d6c4f8;font-size:13px;font-weight:600}
+
+.about{display:flex;flex-direction:column;gap:14px;padding:18px 4px 8px}
+.about .copy{color:var(--muted);display:flex;flex-direction:column;gap:12px}
+.about p{margin:0}
+.about strong{color:var(--fg);font-weight:600}
+
+.panel{border-radius:24px;background:var(--card);border:1px solid var(--line);padding:22px 14px}
+.hint{color:var(--muted);margin:12px 0 0;font-size:15px}
+.cards{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.card{background:var(--card2);border:1px solid var(--line);border-radius:18px;padding:16px 16px 14px}
+.card .k{display:block;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--violet)}
+.card h3{font-size:20px;line-height:1.2;margin:4px 0 6px}
+.card p{color:var(--muted);font-size:15px;line-height:1.45;margin:0}
+.card .toggle{margin-top:12px;font-size:15px;padding:10px 18px;min-height:44px}
+.opts{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:8px}
+.row .pill{flex:1 1 0;justify-content:center;font-size:15px;min-height:48px}
+.opts p{font-size:14.5px}
+
+.contact{border-radius:24px;border:1px solid var(--line);background:radial-gradient(100% 80% at 0% 0%, #24133f 0%, var(--card) 65%);padding:22px 14px;display:flex;flex-direction:column;gap:20px}
+.contact .intro p{color:var(--muted);margin:10px 0 0}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{background:rgba(8,8,11,.55);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.item .k{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.item .val{font-weight:600;font-size:18px;overflow-wrap:anywhere;user-select:all}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+
+footer{color:var(--faint);font-size:13px;text-align:center;padding-top:6px;line-height:1.5}
+
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;
+  padding:10px max(14px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(14px, env(safe-area-inset-left, 0px));
+  background:linear-gradient(180deg, rgba(8,8,11,0) 0%, rgba(8,8,11,.92) 35%)}
+.bar .in{max-width:560px;margin:0 auto;display:flex;gap:8px;padding:8px;border-radius:999px;background:rgba(16,16,21,.94);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.bar .pill{flex:1 1 0;justify-content:center;font-size:16px;min-height:48px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav aria-label="Main">
+    <a class="brand" href="#top">Eddie</a>
+    <a class="pill solid sm" href="https://www.linkedin.com/in/edon-asllani" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+  </nav>
+
+  <header id="top" class="hero">
+    <div>
+      <span class="tag">Summer 2027 · Finance</span>
+      <h1>Hi, my name is <span class="v">Eddie.</span></h1>
+      <p class="lede">I'm Colby and Neil's younger, better looking brother, and I'm looking for a summer 2027 internship in finance: investing analyst, markets, and anything close to it.</p>
+      <p class="deal"><b>The deal:</b> help me land a job at a nice place, and your haircuts are on me for a whole year.</p>
+      <div class="ctas">
+        <a class="pill solid big" href="#help">Help me land it <span aria-hidden="true">↓</span></a>
+        <a class="pill ghost big" href="resume.pdf" target="_blank" rel="noopener">See my resume <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="photo">
+      <div class="arch"><img src="eddie.jpg" width="900" height="1125" alt="Headshot of Eddie in a dark suit and violet tie"></div>
+      <div class="chip"><b>Open to</b>Investing analyst, markets, banking</div>
+    </div>
+  </header>
+
+  <div class="stats" aria-label="At a glance">
+    <div class="stat"><div class="n">5<span class="v">+</span></div><div class="l">years in corporate management</div></div>
+    <div class="stat mid"><div class="n">3.81</div><div class="l">GPA at RIT</div></div>
+    <div class="stat"><div class="n">May <span class="v">2028</span></div><div class="l">Finance, Fordham Gabelli</div></div>
+  </div>
+
+  <section class="about" aria-labelledby="aboutH">
+    <div>
+      <span class="eyebrow">About me</span>
+      <h2 id="aboutH" class="h2">I work hard. <span class="v">I learn fast.</span></h2>
+    </div>
+    <div class="copy">
+      <p><strong>This semester, I’m taking seven classes at Fordham in Manhattan</strong> while commuting nearly four hours a day. At the same time, I work more than 30 hours a week at Bon Bon Hair Studio, including Sundays.</p>
+      <p>I’m comfortable with long days and demanding schedules. I’ve balanced school, work, and professional responsibilities for years, and I’ve learned how to stay organized, adapt quickly, and keep performing when the workload gets heavy.</p>
+      <p>This summer, I’m looking for one thing: a real opportunity to prove myself. I want to be in a role where I can learn fast, take on responsibility, and show what I can do. If I’m given the chance, I’m willing to work even harder to make the most of it.</p>
+    </div>
+  </section>
+
+  <section id="help" class="panel" aria-labelledby="helpH">
+    <span class="eyebrow">How you can help</span>
+    <h2 id="helpH" class="h2">Pick the one that <span class="v">fits you</span></h2>
+    <p class="hint">Tap Contact me and pick whatever is easiest for you. The message is already started.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="k">If you hire</span>
+        <h3>Open a door directly</h3>
+        <p>You work at a firm, or you know who decides. Tell me about a role, or pass my resume to the right person.</p>
+        <button type="button" class="pill solid toggle" id="t0" aria-expanded="false" aria-controls="o0">Contact me ↓</button>
+        <div class="opts" id="o0" hidden>
+          <div class="row">
+            <a class="pill solid" href="sms:+12035704946?&amp;body=Hi%20Eddie%2C%20I%20may%20be%20able%20to%20help%20with%20a%20role%20at%3A%20">Text me</a>
+            <a class="pill ghost" href="mailto:edon_asllani@outlook.com?subject=Internship%20opportunity%20for%20Eddie&amp;body=Hi%20Eddie%2C%0A%0AI%20may%20be%20able%20to%20help%20with%20a%20role%20at%3A%20">Email me</a>
+          </div>
+          <p>Prefer it old school? Leave your business card at the front desk, or just tell Colby, Neil, or me next time you come in.</p>
+        </div>
+      </div>
+      <div class="card">
+        <span class="k">If you know someone</span>
+        <h3>Introduce me</h3>
+        <p>Know a recruiter, an HR rep, a friend, or anyone else who could help? Introduce me to them. One warm introduction beats fifty applications.</p>
+        <button type="button" class="pill solid toggle" id="t1" aria-expanded="false" aria-controls="o1">Contact me ↓</button>
+        <div class="opts" id="o1" hidden>
+          <div class="row">
+            <a class="pill solid" href="sms:+12035704946?&amp;body=Hi%20Eddie%2C%20I%27d%20like%20to%20introduce%20you%20to%3A%20">Text me</a>
+            <a class="pill ghost" href="mailto:edon_asllani@outlook.com?subject=Introduction%20for%20Eddie&amp;body=Hi%20Eddie%2C%0A%0AI%27d%20like%20to%20introduce%20you%20to%3A%20">Email me</a>
+          </div>
+          <p>Prefer it old school? Leave your business card at the front desk, or just tell Colby, Neil, or me next time you come in.</p>
+        </div>
+      </div>
+      <div class="card">
+        <span class="k">If you have 15 minutes</span>
+        <h3>Give me advice</h3>
+        <p>Been in finance? Tell me what you wish you had known, and what to study or do before summer.</p>
+        <button type="button" class="pill solid toggle" id="t2" aria-expanded="false" aria-controls="o2">Contact me ↓</button>
+        <div class="opts" id="o2" hidden>
+          <div class="row">
+            <a class="pill solid" href="sms:+12035704946?&amp;body=Hi%20Eddie%2C%20Happy%20to%20share%20some%20advice.%20">Text me</a>
+            <a class="pill ghost" href="mailto:edon_asllani@outlook.com?subject=Advice%20for%20Eddie&amp;body=Hi%20Eddie%2C%0A%0AHappy%20to%20share%20some%20advice.%20">Email me</a>
+          </div>
+          <p>Prefer it old school? Leave your business card at the front desk, or just tell Colby, Neil, or me next time you come in.</p>
+        </div>
+      </div>
+      <div class="card">
+        <span class="k">If you have a hunch</span>
+        <h3>Leave a tip</h3>
+        <p>A company to apply to, a recruiter to message, a deadline I might miss. Anything helps.</p>
+        <button type="button" class="pill solid toggle" id="t3" aria-expanded="false" aria-controls="o3">Contact me ↓</button>
+        <div class="opts" id="o3" hidden>
+          <div class="row">
+            <a class="pill solid" href="sms:+12035704946?&amp;body=Hi%20Eddie%2C%20Tip%20for%20your%20internship%20search%3A%20">Text me</a>
+            <a class="pill ghost" href="mailto:edon_asllani@outlook.com?subject=Tip%20for%20Eddie&amp;body=Hi%20Eddie%2C%0A%0ATip%20for%20your%20internship%20search%3A%20">Email me</a>
+          </div>
+          <p>Prefer it old school? Leave your business card at the front desk, or just tell Colby, Neil, or me next time you come in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contactH">
+    <div class="intro">
+      <span class="eyebrow">Contact</span>
+      <h2 id="contactH" class="h2">Let's <span class="v">talk.</span></h2>
+      <p>Call, text, or email me, and please connect with me on LinkedIn so we can stay in touch. I reply fast.</p>
+    </div>
+    <div class="list">
+      <div class="item">
+        <span class="k">Phone</span>
+        <span class="val">(203) 570-4946</span>
+        <div class="btns">
+          <a class="pill solid sm" href="sms:+12035704946">Text</a>
+          <a class="pill solid sm" href="tel:+12035704946">Call</a>
+          <button type="button" class="pill soft sm copy" data-copy="(203) 570-4946">Copy</button>
+        </div>
+      </div>
+      <div class="item">
+        <span class="k">Email</span>
+        <span class="val" style="font-size:17px">edon_asllani@outlook.com</span>
+        <div class="btns">
+          <a class="pill solid sm" href="mailto:edon_asllani@outlook.com">Email me</a>
+          <button type="button" class="pill soft sm copy" data-copy="edon_asllani@outlook.com">Copy</button>
+        </div>
+      </div>
+      <a class="pill solid big" href="https://www.linkedin.com/in/edon-asllani" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+      <a class="pill ghost big" href="resume.pdf" target="_blank" rel="noopener">View my resume <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  <footer>Edon Asllani · Bon Bon Hair Studio, Darien, CT<br>Thank you for helping.</footer>
+</div>
+
+<div class="bar" aria-label="Quick contact">
+  <div class="in">
+    <a class="pill solid" href="sms:+12035704946?&amp;body=Hi%20Eddie%2C%20I%20saw%20your%20sign%20at%20Bon%20Bon.%20">Text Eddie</a>
+    <a class="pill ghost" href="mailto:edon_asllani@outlook.com?subject=Saw%20your%20sign%20at%20Bon%20Bon&amp;body=Hi%20Eddie%2C%0A%0A">Email Eddie</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var toggles = Array.prototype.slice.call(document.querySelectorAll('.toggle'));
+  toggles.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      var opening = panel.hidden;
+      toggles.forEach(function(b){
+        document.getElementById(b.getAttribute('aria-controls')).hidden = true;
+        b.setAttribute('aria-expanded','false');
+        b.textContent = 'Contact me ↓';
+      });
+      if (opening){
+        panel.hidden = false;
+        btn.setAttribute('aria-expanded','true');
+        btn.textContent = 'Close ↑';
+      }
+    });
+  });
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.getAttribute('data-copy');
+      function flash(t){ btn.textContent = t; setTimeout(function(){ btn.textContent = 'Copy'; }, 1800); }
+      function selectIt(){
+        var val = btn.closest('.item').querySelector('.val');
+        try { var r = document.createRange(); r.selectNodeContents(val); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch(e){}
+        flash('Selected');
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function(){ flash('Copied'); }, selectIt);
+      } catch(e){ selectIt(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
